@@ -1,13 +1,22 @@
 import random
 
 def generate_and_show_sudoku():
+
     def is_element_present(puzzle: list[list[int]], element: int, i: int, j: int) -> bool:
+        """Check, if given element is already present in a given row and column.
+
+        Args:
+            puzzle: matrix of integers
+            element: integer that is being checked
+            i: index of the row
+            j: index of the column
+        """
         for m in range(9):
             if puzzle[i][m] == element or puzzle[m][j] == element:
                 return True
         return False
 
-    def make_new_puzzle() -> list[list[int]]:
+    def make_new_puzzle() -> list[list[int]] | None:
         puzzle = [[0 for _ in range(9)] for _ in range(9)]
 
         indices = [0, 1, 2]
@@ -42,7 +51,7 @@ def generate_and_show_sudoku():
                             break
 
                     if not is_element_placed:
-                        raise Exception("Incorrect sudoku")
+                        return None
 
         return puzzle
 
@@ -55,11 +64,11 @@ def generate_and_show_sudoku():
     count = 0
 
     while True:
-        try:
-            sudoku_puzzle = make_new_puzzle()
-            break
-        except Exception as e:
+        sudoku_puzzle = make_new_puzzle()
+        if sudoku_puzzle is None:
             count += 1
+        else:
+            break
 
     print("Number of failed attempts:", count)
     show_puzzle(sudoku_puzzle)
