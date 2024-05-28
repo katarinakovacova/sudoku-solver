@@ -1,17 +1,22 @@
 services: 
   nginx:
     image: nginx:1.25.5
-    container_name: nginx
     ports: 
       - "80:80"
     volumes:
-      - "./backend/apigw/nginx.conf:/etc/nginx/nginx.conf"
+      - "./apigw/nginx.conf:/etc/nginx/nginx.conf"
+    depends_on: 
+      - swagger-ui
+      - backend
     
   swagger-ui:
     image: swaggerapi/swagger-ui:v5.17.5
-    container_name: swagger-ui
     volumes:
-      - "./backend/docs/documentation.yaml:/documentation.yaml"
+      - "./docs/documentation.yaml:/documentation.yaml"
     environment:
       SWAGGER_JSON: /documentation.yaml
       BASE_URL: /swagger
+
+  backend:
+    image: backend:latest
+    build: ./backend
