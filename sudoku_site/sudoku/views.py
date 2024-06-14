@@ -15,13 +15,13 @@ def puzzle(request):
 
     return JsonResponse(output)
 
-def home(request):
-    return render(request, 'home.html')
 
 def home(request):
     n_attempts, sudoku_puzzle = make_new_puzzle()   
+
     context = {
         'sudoku_puzzle': sudoku_puzzle,
         'n_attempts': n_attempts, 
     }
+    
     return render(request, 'home.html', context)
