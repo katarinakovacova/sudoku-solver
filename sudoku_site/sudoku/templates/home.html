@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        .sudoku-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .sudoku-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .sudoku-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 40px);
+            grid-template-rows: repeat(9, 40px);
+            gap: 1px;
+        }
+        .sudoku-cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+        }
+        .sudoku-cell.given {
+            font-weight: bold;
+        }
+        .sudoku-row:nth-child(3n) .sudoku-cell {
+            border-bottom: 2px solid #000;
+        }
+        .sudoku-grid .sudoku-cell:nth-child(3n) {
+            border-right: 2px solid #000;
+        }
+        .sudoku-row:nth-child(3n + 1) .sudoku-cell {
+            border-top: 2px solid #000;
+        }
+        .sudoku-grid .sudoku-cell:nth-child(3n + 1) {
+            border-left: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Sudoku Quick Cucumber</h1>
+    <div class="sudoku-container">
+        <div class="sudoku-title">Sudoku Quick Cucumber</div>
+        <div class="sudoku-grid">
+            {% for row in sudoku_puzzle %}
+                {% for cell in row %}
+                    <div class="sudoku-cell {% if cell != 0 %}given{% endif %}">
+                        {{ cell|default_if_none:"" }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="attempts">
+            <p>Number of unsuccessful attempts: {{ n_attempts }}</p>
+        </div>
+    </div>
+</body>
+</html>
