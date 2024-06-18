@@ -95,3 +95,26 @@ def make_new_puzzle() -> tuple[int, list[list[int]]]:
             break
 
     return n_attempts, sudoku_puzzle
+
+
+def remove_numbers_from_puzzle(puzzle: list[list[int]], level: str) -> list[list[int]]:
+    level_to_holes = {
+        "easy": 30,
+        "medium": 40,
+        "hard": 50
+    }
+    
+    holes = level_to_holes.get(level, 30)
+    
+    puzzle_with_holes = [row[:] for row in puzzle] 
+    
+    for _ in range(holes):
+        while True:
+            row = random.randint(0, 8)
+            col = random.randint(0, 8)
+            if puzzle_with_holes[row][col] != 0:
+                puzzle_with_holes[row][col] = 0
+                break
+
+    return puzzle_with_holes
+
