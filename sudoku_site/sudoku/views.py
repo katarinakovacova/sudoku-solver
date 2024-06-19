@@ -18,7 +18,7 @@ def puzzle(request):
 
 def home(request):
     n_attempts, sudoku_puzzle = make_new_puzzle()
-    level = 'easy'
+    level = request.GET.get('level', 'easy')
     sudoku_puzzle_with_holes = remove_numbers_from_puzzle(sudoku_puzzle, level)
 
     context = {

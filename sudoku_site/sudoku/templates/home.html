@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Sudoku Quick Cucumber</title>
     <style>
         body {
             background-color: #cae4c5;
@@ -124,8 +124,42 @@
             color: #254222;
         }
     </style>
+     <script>
+        let timerInterval;
+        let isRunning = false;
+        let totalSeconds = 0;
+
+        function updateTimerDisplay() {
+            const timerButton = document.getElementById('timerButton');
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+            const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+            timerButton.textContent = `${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                totalSeconds++;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function toggleTimer() {
+            const timerButton = document.getElementById('timerButton');
+            isRunning ? stopTimer() : startTimer();
+            Array.from(document.getElementsByClassName("number-cell")).forEach((el) => {
+                el.style.filter = isRunning ? "blur(15px)" : null;
+            })
+            isRunning = !isRunning;
+        }
+    </script>
 </head>
-<body>
+<body onload="toggleTimer()">
 <div class="content">
     <div class="header">
         <h1>Sudoku Quick Cucumber</h1>
@@ -135,14 +169,15 @@
         <li class="dropdown">
             <button class="menu-button">New Sudoku</button>
             <div class="dropdown-content">
-              <a href="#">Easy</a>
-              <a href="#">Medium</a>
-              <a href="#">Hard</a>
+              <a href="/?level=easy">Easy</a>
+              <a href="/?level=medium">Medium</a>
+              <a href="/?level=hard">Hard</a>
             </div>
         </li>
         <li class="timer">
-            <button class="menu-button">00:00</button>
+            <button class="menu-button" id="timerButton" onclick="toggleTimer()">00:00</button>
         </li>
+
         <li class="mistake">
             <button class="menu-button">0 Mistakes</button>
         </li>
