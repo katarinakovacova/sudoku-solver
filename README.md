@@ -22,3 +22,7 @@ Welcome to the Sudoku Solver Application! This Django-based application allows u
 - **Various Difficulties:** The application offers a wide range of difficulties for Sudoku puzzles, from beginner levels to the most challenging ones. Each user can choose the level that suits them.
 
 Don't miss the opportunity to improve your Sudoku-solving skills and experience the joy of achieving new successes. Try the Sudoku Solver application today!
+
+## Contact
+
+For any questions or support, please contact [Katarína Kováčová](mailto:katarinakovacova100@gmail.com).
