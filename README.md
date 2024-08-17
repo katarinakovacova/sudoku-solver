@@ -12,8 +12,8 @@ Welcome to the Sudoku Solver Application! This Django-based application allows u
 
 * Sudoku Grid Display: Visual representation of the Sudoku grid, making it easy to interact with and solve puzzles.
 * Puzzle Generation: Generate new Sudoku puzzles with varying difficulty levels: Easy, Medium, and Hard.
-* Puzzle Solving: Automatically solve Sudoku puzzles with efficient algorithms.
-* Difficulty Levels: Choose from three different difficulty levels to match your skill level.
+* Puzzle Solving: Automatically solve Sudoku puzzles with efficient algorithms.
+* Difficulty Levels: Choose from three different difficulty levels to match your skill level.
 
 ## Key Features:
 
