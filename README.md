@@ -2,7 +2,18 @@
 
 ## Introduction
 
-Welcome to the Sudoku Solver application, an innovative tool for solving and improving your Sudoku skills. This application, developed in the Python programming language, offers users the ability not only to solve Sudoku puzzles of various difficulties but also to register as users and track their progress and improvements in solving these challenges.
+Sudoku Solver Application
+
+Introduction
+
+Welcome to the Sudoku Solver Application! This Django-based application allows users to generate and solve Sudoku puzzles. With support for various difficulty levels, it provides an engaging and challenging experience for Sudoku enthusiasts of all skill levels.
+
+**Key Features
+
+Sudoku Grid Display: Visual representation of the Sudoku grid, making it easy to interact with and solve puzzles.
+Puzzle Generation: Generate new Sudoku puzzles with varying difficulty levels: Easy, Medium, and Hard.
+Puzzle Solving: Automatically solve Sudoku puzzles with efficient algorithms.
+Difficulty Levels: Choose from three different difficulty levels to match your skill level.
 
 ## Key Features:
 
