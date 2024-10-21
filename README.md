@@ -1,4 +1,4 @@
-# Sudoku Solver Application
+# Gridoku - Sudoku Solver Application
 
 ## Introduction
 
@@ -6,7 +6,7 @@ Sudoku Solver Application
 
 Introduction
 
-Welcome to the Sudoku Solver Application! This Django-based application allows users to generate and solve Sudoku puzzles. With support for various difficulty levels, it provides an engaging and challenging experience for Sudoku enthusiasts of all skill levels.
+Welcome to the Sudoku Solver Application, Gridoku! This Django-based application allows users to generate and solve Sudoku puzzles. With support for various difficulty levels, it provides an engaging and challenging experience for Sudoku enthusiasts of all skill levels.
 
 ## Key Features
 
@@ -21,7 +21,7 @@ Welcome to the Sudoku Solver Application! This Django-based application allows u
 
 - **Various Difficulties:** The application offers a wide range of difficulties for Sudoku puzzles, from beginner levels to the most challenging ones. Each user can choose the level that suits them.
 
-Don't miss the opportunity to improve your Sudoku-solving skills and experience the joy of achieving new successes. Try the Sudoku Solver application today!
+Don't miss the opportunity to improve your Sudoku-solving skills and experience the joy of achieving new successes. Try the Gridoku today!
 
 ## Contact
 
