@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Quick Cucumber</title>
+    <style>
+        body {
+            background-color: #cae4c5;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 30px;
+            color: #254222;
+        }
+
+        .menu {
+            font-size: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .menu li {
+            display: inline-block;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-button {
+            background-color: #254222;
+            padding: 20px;
+            color: white;
+            font-size: 16px;
+            border: none;
+        }
+
+        .menu-button:hover {
+            background-color: #99cc66;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+        }
+
+        .dropdown-content a {
+            color: #254222;
+            padding: 12px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ece2b1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .level {
+            text-align: center;
+            font-size: 20px;
+            color: #254222;
+        }
+
+        .number-container {
+            display: grid;
+            grid-template-columns: repeat(9, 80px);
+            margin: 20px 138px;
+            border-width: 3px 3px 3px 3px;
+            border-style: solid;
+            border-color: #254222;
+        }
+
+        .number-cell {
+            background-color: white;
+            border: 1px solid #254222;
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+            color: #254222;
+        }
+
+        .number-cell:nth-child(3n) {
+            border-right: 3px solid #254222;
+        }
+
+        .number-cell[data-y="3"] {
+            border-bottom: 3px solid #254222;
+        }
+
+        .number-cell[data-y="6"] {
+            border-bottom: 3px solid #254222;
+        }
+
+
+        .number-cell-origin {
+            background-color: #ece2b1;
+        }
+
+        .number-cell:hover {
+            background-color: #99cc66;
+        }
+
+        .attempts {
+            text-align: center;
+            font-size: 20px;
+            color: #254222;
+        }
+    </style>
+     <script>
+        let timerInterval;
+        let isRunning = false;
+        let totalSeconds = 0;
+
+        function updateTimerDisplay() {
+            const timerButton = document.getElementById('timerButton');
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+            const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+            timerButton.textContent = `${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                totalSeconds++;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function toggleTimer() {
+            const timerButton = document.getElementById('timerButton');
+            isRunning ? stopTimer() : startTimer();
+            Array.from(document.getElementsByClassName("number-cell")).forEach((el) => {
+                el.style.filter = isRunning ? "blur(15px)" : null;
+            })
+            isRunning = !isRunning;
+        }
+    </script>
+</head>
+<body onload="toggleTimer()">
+<div class="content">
+    <div class="header">
+        <h1>Sudoku Quick Cucumber</h1>
+    </div>
+
+    <ul class="menu">
+        <li class="dropdown">
+            <button class="menu-button">New Sudoku</button>
+            <div class="dropdown-content">
+              <a href="/?level=easy">Easy</a>
+              <a href="/?level=medium">Medium</a>
+              <a href="/?level=hard">Hard</a>
+            </div>
+        </li>
+        <li class="timer">
+            <button class="menu-button" id="timerButton" onclick="toggleTimer()">00:00</button>
+        </li>
+
+        <li class="mistake">
+            <button class="menu-button">0 Mistakes</button>
+        </li>
+        <li class="hint">
+            <button class="menu-button">Hint</button>
+        </li>
+    </ul>
+
+    <div class="level">
+        <h3>Level of Sudoku: {{ level|title }}</h3>
+    </div>
+
+    <div class="number-container">
+        {% for row in sudoku_puzzle_with_holes %}
+            {% for cell in row %}
+                {% if cell > 0 %}
+                    <div class="number-cell number-cell-origin" data-y="{{ forloop.parentloop.counter }}">{{ cell }}</div>
+                {% else %}
+                    <div class="number-cell" data-y="{{ forloop.parentloop.counter }}"></div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="number-container">
+        {% for i in '123456789' %}
+            <button class="number-cell">{{ i }}</button>
+        {% endfor %}
+    </div>
+
+    <div class="attempts">
+        <p>Number of unsuccessful attempts: {{ n_attempts }}</p>
+    </div>
+
+</div>
+</body>
+</html>

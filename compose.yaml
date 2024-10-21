@@ -7,7 +7,7 @@ services:
       - "./apigw/nginx.conf:/etc/nginx/nginx.conf"
     depends_on: 
       - swagger-ui
-      - backend
+      - sudoku-site
     
   swagger-ui:
     image: swaggerapi/swagger-ui:v5.17.5
@@ -17,6 +17,6 @@ services:
       SWAGGER_JSON: /documentation.yaml
       BASE_URL: /swagger
 
-  backend:
-    image: backend:latest
-    build: ./backend
+  sudoku-site:
+    image: sudoku-site:latest
+    build: ./sudoku_site
