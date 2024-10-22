@@ -9,10 +9,8 @@ info:
     name: MIT License
     url: https://choosealicense.com/licenses/mit/
   version: 1.0.0
-servers:
-  - url: https://sudoku.anteria.org/api/v1
 paths:
-  /puzzle:
+  /sudoku/puzzle:
     get:
       tags:
         - sudoku
