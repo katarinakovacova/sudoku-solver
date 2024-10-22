@@ -170,6 +170,22 @@
                 });
             });
 
+            // Select hint button and implement hinting functionality
+            document.querySelectorAll('.hint button').forEach(button => {
+                button.addEventListener('click', () => {
+                cells = document.querySelectorAll('.number-cell');
+                for (let i = 0; i < cells.length; i++) {
+                    cell = cells[i];
+                    if (!cell.classList.contains('number-cell-origin') && !cell.classList.contains('number-cell-selector')) {
+                        if (cell.textContent === "") {
+                            cell.textContent = cell.getAttribute("data-origin");
+                            break;
+                        }
+                    }
+                }
+                });
+            });
+
             // Fill the selected cell in the sudoku grid with the chosen number
             document.querySelectorAll('.number-cell').forEach(cell => {
                 if (!cell.classList.contains('number-cell-origin') && !cell.classList.contains('number-cell-selector')) {
