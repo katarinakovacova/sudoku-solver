@@ -172,10 +172,19 @@
 
             // Fill the selected cell in the sudoku grid with the chosen number
             document.querySelectorAll('.number-cell').forEach(cell => {
-                if (!cell.classList.contains('number-cell-origin')) {
+                if (!cell.classList.contains('number-cell-origin') && !cell.classList.contains('number-cell-selector')) {
                     cell.addEventListener('click', () => {
                         if (selectedNumber !== null) {
-                            cell.textContent = selectedNumber;
+                            originNumber = cell.getAttribute("data-origin");
+                            if (selectedNumber == originNumber) {
+                                cell.textContent = selectedNumber;
+                            } else {
+                                mistakeButton = document.querySelector('.mistake .menu-button');
+                                mistakes = parseInt(mistakeButton.getAttribute("data-mistakes"));
+                                mistakes += 1;
+                                mistakeButton.setAttribute('data-mistakes', mistakes);
+                                mistakeButton.textContent = `${mistakes} Mistakes`;
+                            }
                         }
                     });
                 }
@@ -203,7 +212,7 @@
         </li>
 
         <li class="mistake">
-            <button class="menu-button">0 Mistakes</button>
+            <button class="menu-button" data-mistakes="0">0 Mistakes</button>
         </li>
         <li class="hint">
             <button class="menu-button">Hint</button>
@@ -215,12 +224,12 @@
     </div>
 
     <div class="number-container">
-        {% for row in sudoku_puzzle_with_holes %}
-            {% for cell in row %}
+        {% for row in sudoku_puzzles %}
+            {% for origin_cell, cell in row %}
                 {% if cell > 0 %}
-                    <div class="number-cell number-cell-origin" data-y="{{ forloop.parentloop.counter }}">{{ cell }}</div>
+                    <div class="number-cell number-cell-origin" data-origin="{{ origin_cell }}" data-y="{{ forloop.parentloop.counter }}">{{ cell }}</div>
                 {% else %}
-                    <div class="number-cell" data-y="{{ forloop.parentloop.counter }}"></div>
+                    <div class="number-cell" data-origin="{{ origin_cell }}" data-y="{{ forloop.parentloop.counter }}"></div>
                 {% endif %}
             {% endfor %}
         {% endfor %}
@@ -228,7 +237,7 @@
 
     <div class="number-container">
         {% for i in '123456789' %}
-            <button class="number-cell">{{ i }}</button>
+            <button class="number-cell number-cell-selector">{{ i }}</button>
         {% endfor %}
     </div>
 
