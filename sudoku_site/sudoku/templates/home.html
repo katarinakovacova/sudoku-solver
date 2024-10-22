@@ -157,6 +157,30 @@
             })
             isRunning = !isRunning;
         }
+
+         document.addEventListener('DOMContentLoaded', () => {
+            let selectedNumber = null;
+
+            // Select a number from the second number container (1-9 buttons)
+            document.querySelectorAll('.number-container button').forEach(button => {
+                button.addEventListener('click', () => {
+                    selectedNumber = button.textContent;
+                    document.querySelectorAll('.number-container button').forEach(b => b.style.backgroundColor = '');
+                    button.style.backgroundColor = '#BE6500';
+                });
+            });
+
+            // Fill the selected cell in the sudoku grid with the chosen number
+            document.querySelectorAll('.number-cell').forEach(cell => {
+                if (!cell.classList.contains('number-cell-origin')) {
+                    cell.addEventListener('click', () => {
+                        if (selectedNumber !== null) {
+                            cell.textContent = selectedNumber;
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </head>
 <body onload="toggleTimer()">

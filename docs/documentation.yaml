@@ -30,7 +30,7 @@ paths:
                     example: 10
                   puzzle:
                     items:
-                      $ref: '#/components/schemas/Puzzle'
+                      $ref: '#/components/schemas/Sudoku'
 components:
   schemas:
     Puzzle:

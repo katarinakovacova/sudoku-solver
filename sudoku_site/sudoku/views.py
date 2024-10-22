@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from sudoku.puzzle import make_new_puzzle, remove_numbers_from_puzzle
+from .puzzle import make_new_puzzle, remove_numbers_from_puzzle
 
 from django.shortcuts import render
 
