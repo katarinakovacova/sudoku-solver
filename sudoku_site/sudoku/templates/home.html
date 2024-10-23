@@ -6,7 +6,7 @@
     <title>Gridoku</title>
     <style>
         body {
-            background-color: #511316;
+            background-color: #0B2839;
             font-family: 'Times New Roman', Times, serif;
         }
 
@@ -41,7 +41,7 @@
         }
 
         .menu-button {
-            background-color: #671315;
+            background-color: #3D717E;
             padding: 20px;
             color: #D3AE93;
             font-size: 16px;
@@ -49,13 +49,13 @@
         }
 
         .menu-button:hover {
-            background-color: #671315;
+            background-color: #10475E;
         }
 
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #C54825;
+            background-color: #3D717E;
         }
 
         .dropdown-content a {
@@ -66,7 +66,7 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #671315;
+            background-color: #10475E;
         }
 
         .dropdown:hover .dropdown-content {
@@ -82,14 +82,14 @@
         .number-container {
             display: grid;
             grid-template-columns: repeat(9, 80px);
-            margin: 20px 138px;
-            border-width: 3px 3px 3px 3px;
+            margin: 20px 136px;
+            border-width: 6px 6px 6px 6px;
             border-style: solid;
             border-color: #D3AE93;
         }
 
         .number-cell {
-            background-color: #511316;
+            background-color: #0B2839;
             border: 1px solid #D3AE93;
             padding: 20px;
             font-size: 30px;
@@ -98,24 +98,28 @@
         }
 
         .number-cell:nth-child(3n) {
-            border-right: 3px solid #D3AE93;
+            border-right: 6px solid #D3AE93;
         }
 
         .number-cell[data-y="3"] {
-            border-bottom: 3px solid #D3AE93;
+            border-bottom: 6px solid #D3AE93;
         }
 
         .number-cell[data-y="6"] {
-            border-bottom: 3px solid #D3AE93;
+            border-bottom: 6px solid #D3AE93;
         }
 
-
         .number-cell-origin {
-            background-color: #511316;
+            background-color: #3D717E;
         }
 
         .number-cell:hover {
-            background-color: #BE6500;
+            background-color: #3D717E;
+        }
+
+        .number-cell-selector {
+            background-color: #D3AE93;
+            color: #0B2839;
         }
 
         .attempts {
@@ -166,7 +170,7 @@
                 button.addEventListener('click', () => {
                     selectedNumber = button.textContent;
                     document.querySelectorAll('.number-container button').forEach(b => b.style.backgroundColor = '');
-                    button.style.backgroundColor = '#BE6500';
+                    button.style.backgroundColor = '#3D717E';
                 });
             });
 

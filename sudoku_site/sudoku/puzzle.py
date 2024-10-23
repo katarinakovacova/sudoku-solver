@@ -99,12 +99,12 @@ def make_new_puzzle() -> tuple[int, list[list[int]]]:
 
 def remove_numbers_from_puzzle(puzzle: list[list[int]], level: str) -> list[list[int]]:
     level_to_holes = {
-        "easy": 30,
-        "medium": 40,
-        "hard": 50
+        "easy": 40,
+        "medium": 50,
+        "hard": 60,
     }
     
-    holes = level_to_holes.get(level, 30)
+    holes = level_to_holes.get(level)
     
     puzzle_with_holes = [row[:] for row in puzzle] 
     
