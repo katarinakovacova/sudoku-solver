@@ -2,6 +2,14 @@ import random
 
 
 def is_valid(puzzle: list[list[int]]) -> bool:
+    """Check if the provided Sudoku puzzle is valid.
+
+    Args:
+        puzzle: A 9x9 matrix representing the Sudoku puzzle.
+
+    Returns:
+        bool: True if the puzzle is valid, False otherwise.
+    """
     def is_valid_unit(unit):
         return len(set(unit)) == 9 and all(1 <= num <= 9 for num in unit)
 
@@ -23,13 +31,16 @@ def is_valid(puzzle: list[list[int]]) -> bool:
 
 
 def _is_element_present(puzzle: list[list[int]], element: int, i: int, j: int) -> bool:
-    """Check, if given element is already present in a given row and column.
+    """Check if the given element is present in the specified row or column.
 
     Args:
-        puzzle: matrix of integers
-        element: integer that is being checked
-        i: index of the row
-        j: index of the column
+        puzzle: A 9x9 matrix representing the Sudoku puzzle.
+        element: The integer to check for presence.
+        i: The index of the row to check.
+        j: The index of the column to check.
+
+    Returns:
+        bool: True if the element is found in the row or column, False otherwise.
     """
     for m in range(9):
         if puzzle[i][m] == element or puzzle[m][j] == element:
@@ -38,6 +49,11 @@ def _is_element_present(puzzle: list[list[int]], element: int, i: int, j: int) -
 
 
 def try_make_new_puzzle() -> list[list[int]] | None:
+    """Attempt to generate a new Sudoku puzzle.
+
+    Returns:
+        list[list[int]] | None: A 9x9 Sudoku puzzle if successful, None if failed.
+    """
     puzzle = [[0 for _ in range(9)] for _ in range(9)]
 
     indices = [0, 1, 2]
@@ -78,6 +94,11 @@ def try_make_new_puzzle() -> list[list[int]] | None:
 
 
 def _show_puzzle(puzzle: list[list[int]]):
+    """Print the Sudoku puzzle to the console.
+
+    Args:
+        puzzle: A 9x9 matrix representing the Sudoku puzzle.
+    """
     for i in range(9):
         for j in range(9):
             print(puzzle[i][j], end=" ")
@@ -85,6 +106,11 @@ def _show_puzzle(puzzle: list[list[int]]):
 
 
 def make_new_puzzle() -> tuple[int, list[list[int]]]:
+    """Generate a new Sudoku puzzle with a specified number of attempts.
+
+    Returns:
+        tuple[int, list[list[int]]]: A tuple containing the number of attempts and the generated Sudoku puzzle.
+    """
     n_attempts = 0
 
     while True:
@@ -98,6 +124,15 @@ def make_new_puzzle() -> tuple[int, list[list[int]]]:
 
 
 def remove_numbers_from_puzzle(puzzle: list[list[int]], level: str) -> list[list[int]]:
+    """Remove numbers from the generated Sudoku puzzle based on the difficulty level.
+
+    Args:
+        puzzle: A 9x9 matrix representing the Sudoku puzzle.
+        level: The difficulty level ('easy', 'medium', or 'hard').
+
+    Returns:
+        list[list[int]]: The modified Sudoku puzzle with holes (removed numbers).
+    """
     level_to_holes = {
         "easy": 40,
         "medium": 50,

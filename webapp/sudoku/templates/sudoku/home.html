@@ -5,17 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gridoku</title>
+
+    <!-- Link to the CSS stylesheet for the Sudoku game -->
     <link rel="stylesheet" href="{% static 'sudoku/css/style.css' %}">
+
+    <!-- Include JavaScript for Sudoku game logic -->
     <script src="{% static 'sudoku/js/script.js' %}"></script>
 </head>
 <body onload="toggleTimer()">
+
+<!-- Content container for the entire game interface -->
 <div class="content">
     <div class="header">
         <h1>Gridoku</h1>
     </div>
 
+    <!-- Main menu for the Sudoku game -->
     <ul class="menu">
         <li class="dropdown">
+
+            <!-- Button to create a new Sudoku puzzle, with difficulty selection -->
             <button class="menu-button">New Sudoku</button>
             <div class="dropdown-content">
               <a href="/sudoku?level=easy">Easy</a>
@@ -23,25 +32,33 @@
               <a href="/sudoku?level=hard">Hard</a>
             </div>
         </li>
+
+        <!-- Timer to track how long the game has been running -->
         <li class="timer">
             <button class="menu-button" id="timerButton" onclick="toggleTimer()">00:00</button>
         </li>
 
+         <!-- Display of current mistake count -->
         <li class="mistake">
             <button class="menu-button" data-mistakes="0">0 Mistakes</button>
         </li>
+
+        <!-- Hint button for providing a hint in the game -->
         <li class="hint">
             <button class="menu-button">Hint</button>
         </li>
     </ul>
 
+     <!-- Display of the selected Sudoku level (Easy, Medium, Hard) -->
     <div class="level">
         <h3>Level of Sudoku: {{ level|title }}</h3>
     </div>
 
+     <!-- Sudoku grid container -->
     <div class="number-container">
         {% for row in sudoku_puzzles %}
             {% for origin_cell, cell in row %}
+                 <!-- Display fixed cells (original puzzle) and empty cells -->
                 {% if cell > 0 %}
                     <div class="number-cell number-cell-origin" data-origin="{{ origin_cell }}" data-y="{{ forloop.parentloop.counter }}">{{ cell }}</div>
                 {% else %}
@@ -51,12 +68,14 @@
         {% endfor %}
     </div>
 
+    <!-- Number selection container for the player to choose digits (1-9) -->
     <div class="number-container">
         {% for i in '123456789' %}
             <button class="number-cell number-cell-selector">{{ i }}</button>
         {% endfor %}
     </div>
 
+    <!-- Display of the total number of unsuccessful attempts -->
     <div class="attempts">
         <p>Number of unsuccessful attempts: {{ n_attempts }}</p>
     </div>

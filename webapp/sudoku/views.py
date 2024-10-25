@@ -6,6 +6,15 @@ from django.shortcuts import render
 
 
 def puzzle(request):
+    """
+    Generates a new Sudoku puzzle and returns it as a JSON response.
+
+    Args:
+        request (HttpRequest): The Django HTTP request object.
+
+    Returns:
+        JsonResponse: A response containing the number of attempts and the generated puzzle.
+    """
     n_attempts, puzzle =  make_new_puzzle()
 
     output = {
@@ -17,6 +26,15 @@ def puzzle(request):
 
 
 def home(request):
+    """
+    Displays the home page with a new Sudoku puzzle.
+
+    Args:
+        request (HttpRequest): The Django HTTP request object.
+
+    Returns:
+        HttpResponse: Renders the template with the generated Sudoku puzzle and its difficulty level.
+    """
     n_attempts, sudoku_puzzle = make_new_puzzle()
     level = request.GET.get('level', 'easy')
     sudoku_puzzle_with_holes = remove_numbers_from_puzzle(sudoku_puzzle, level)

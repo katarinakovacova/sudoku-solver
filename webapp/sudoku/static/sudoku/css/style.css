@@ -1,38 +1,46 @@
+/* Setting the background color and default font for the page */
 body {
     background-color: #0B2839;
     font-family: 'Times New Roman', Times, serif;
 }
 
+/* Buttons will use the same font as the rest of the document */
 button {
     font-family: inherit;
 }
 
+/* Setting the maximum width for the content and centering it */
 .content {
     max-width: 1000px;
     margin: auto;
 }
 
+/* Styling for the page header */
 .header {
     text-align: center;
     font-size: 30px;
     color: #D3AE93;
 }
 
+/* Styling for the menu - centered text and defined color */
 .menu {
     font-size: 20px;
     color: #D3AE93;
     text-align: center;
 }
 
+/* Displaying menu items inline (side by side) */
 .menu li {
     display: inline-block;
 }
 
+/* Dropdown menu styling */
 .dropdown {
     position: relative;
     display: inline-block;
 }
 
+/* Buttons in the menu - background color, padding, text size */
 .menu-button {
     background-color: #3D717E;
     padding: 20px;
@@ -41,16 +49,19 @@ button {
     border: none;
 }
 
+/* Hover effect for the menu buttons - background color change */
 .menu-button:hover {
     background-color: #10475E;
 }
 
+/* Dropdown content - initially hidden */
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #3D717E;
 }
 
+/* Links in the dropdown menu */
 .dropdown-content a {
     color: #D3AE93;
     padding: 12px;
@@ -58,20 +69,24 @@ button {
     display: block;
 }
 
+/* Hover effect for links in the dropdown - background color change */
 .dropdown-content a:hover {
     background-color: #10475E;
 }
 
+/* Displaying the dropdown content when hovering over the menu */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
+/* Styling for the game level indicator */
 .level {
     text-align: center;
     font-size: 20px;
     color: #D3AE93;
 }
 
+/* Sudoku grid - creates 9 columns with defined width */
 .number-container {
     display: grid;
     grid-template-columns: repeat(9, 80px);
@@ -81,6 +96,7 @@ button {
     border-color: #D3AE93;
 }
 
+/* Sudoku cells - background color, border, padding, text alignment, and font size */
 .number-cell {
     background-color: #0B2839;
     border: 1px solid #D3AE93;
@@ -90,31 +106,38 @@ button {
     color: #D3AE93;
 }
 
+/* Every third cell has a thicker right border to visually divide the grid */
 .number-cell:nth-child(3n) {
     border-right: 6px solid #D3AE93;
 }
 
+/* Cells in the 3rd and 6th row have a thicker bottom border to divide the grid */
 .number-cell[data-y="3"] {
     border-bottom: 6px solid #D3AE93;
 }
 
+/* Cells in the 6th row have a thicker bottom border to visually divide the grid */
 .number-cell[data-y="6"] {
     border-bottom: 6px solid #D3AE93;
 }
 
+/* Original Sudoku numbers (pre-filled values) have a different background color */
 .number-cell-origin {
     background-color: #3D717E;
 }
 
+/* Hover effect for Sudoku cells */
 .number-cell:hover {
     background-color: #3D717E;
 }
 
+/* Selected Sudoku cell changes background and text color */
 .number-cell-selector {
     background-color: #D3AE93;
     color: #0B2839;
 }
 
+/* Centering and styling for the number of attempts */
 .attempts {
     text-align: center;
     font-size: 20px;
